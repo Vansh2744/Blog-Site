@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    {{> navbar}}
+    <h1>My Blog</h1>
+    <form action="/blog" method="POST">
+    <div class="inputTitle">
+        <span class="titleName">Title:</span><select name="title" id="title">
+            {{#each Actors as |actor|}}
+                <option value="{{actor._id}}">{{actor.name}}</option>
+            {{/each}}
+        </select>
+    <div class="inputDisc">
+        <span class="discriptionName">Discription:</span> <textarea type="text" name="discription" id="discription" placeholder="Enter discription...."></textarea>
+    </div>
+    <div class="addBlog">
+        <button class="add">Add Blog</button>
+    </div>
+    </form>
+    <ul>
+    {{#each Blog as |list|}}
+        <li>
+            <div>
+                Title: {{list.title.name}}
+            </div>
+            <div>
+                Discription: {{list.discription}}
+            </div>
+            <button><a href="/delete?id={{list._id}}">Delete</a></button>
+            <button><a href="/update?id={{list._id}}">Update</a></button>
+            <button><a href="/details?id={{list._id}}">Details</a></button>
+        </li>
+    {{/each}}
+    </ul>
+</body>
+</html>

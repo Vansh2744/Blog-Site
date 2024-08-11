@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    {{> navbar}}
+    <h1>Actor Blog</h1>
+    <form action="/actors" method="POST">
+        <div class="inputTitle">
+            <span>Name:</span> <input type="text" name="name" id="name" placeholder="Enter Name">
+        </div>
+        <div class="inputTitle">
+            <span>Age:</span> <input type="text" name="age" id="age" placeholder="Enter Age">
+        </div>
+        <div class="inputDisc">
+            <span>ImageUrl:</span> <textarea type="text" name="imgUrl" id="imgUrl"
+                placeholder="Enter imageUrl"></textarea>
+        </div>
+        <div class="addBlog">
+            <button class="add">Add Actor</button>
+        </div>
+    </form>
+    <ul>
+        {{#each Actors as |list|}}
+        <li>
+            <div>
+                <img src="{{list.imgUrl}}" alt="">
+            </div>    
+            <div>
+                Name: {{list.name}}
+            </div>
+            <div>
+                Age: {{list.age}}
+            </div>
+            <button><a href="/deleteActor?id={{list._id}}">Delete</a></button>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
